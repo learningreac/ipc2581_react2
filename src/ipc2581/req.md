@@ -14,16 +14,13 @@
 1. transform mouseXY(canvas coor) to modelXY;
 2. calculte the distance of that point to each entity of model.
 
-
-
-#todo:
-1.canvas rotate, some pad rect entity need to be rotate.
-2.add layer color 
-3.add other layers
-
 # layers button
 
 # load xml button
+
+## Testcase
+### load the xml file, parse it, show differnt layers on canvas.
+![ipc2581testcase3](imgs/ipc2581Sample.png?raw=true "rectangles")
 
 
 
