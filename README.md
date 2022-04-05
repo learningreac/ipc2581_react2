@@ -5,7 +5,8 @@ This project rewrite Delaunator Canvas with React.
 
 ## Project 2:
 
-In the project directory, you can run:
+## Draw Pad
+![rectangles](imgs/rectangles.png?raw=true "rectangles")
 
 ## Project 3:
 

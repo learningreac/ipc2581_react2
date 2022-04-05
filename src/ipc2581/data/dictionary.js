@@ -1,5 +1,3 @@
-import textcase3 from "./testcase3";
-
 /**
  * dic = {};
  * dic.dicStandard  = new Map();
