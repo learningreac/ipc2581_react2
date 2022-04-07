@@ -22,7 +22,7 @@ const FileDropZone = ({ setxmlDoc }) => {
       reader.readAsText(file)
     })
 
-  }, []);
+  }, [setxmlDoc]);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 

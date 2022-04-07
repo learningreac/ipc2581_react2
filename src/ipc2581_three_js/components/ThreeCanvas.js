@@ -1,9 +1,19 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from "three";
 
+function points2vector(points) {
+    let pointsgeometry;
+    let arr = [];
+    for (const point of points) {
+        arr.push(new THREE.Vector3(point[0], point[1], 0));
+    };
+    pointsgeometry = new THREE.BufferGeometry().setFromPoints(arr);
+    return pointsgeometry;
+};
+
 
 const ThreeJsCanvas = () => {
-    const MountRef = useRef(null);
+    const MountRef = useRef(null); 
 
     useEffect(() => {
         const scene = new THREE.Scene();
@@ -16,42 +26,19 @@ const ThreeJsCanvas = () => {
         document.body.appendChild(renderer.domElement);
        // const lineMaterial = new THREE.LineBasicMaterial({ color: Math.random() * 0xffffff });
 
-        const samplePoints = [[[-10, 10], [5, 10], [15, 25], [30, 50]], [[-30, 10], [25, 10], [35, 25], [10, 50]]];
+        const samplePoints = [[[-10, 10], [5, 10], [15, 25], [30, 50]], 
+                                [[-30, 10], [25, 10], [35, 25], [10, 50]],
+                                [[-20, 20], [100, 50], [55, 65], [20, 10]]];
 
-        function points2vector(arr, points) {
-            console.log('points', points);
-
-            for (const point of points) {
-                arr.push(new THREE.Vector3(point[0], point[1], 0));
-            };
-            return arr;
-        };
+        
 
         for (const points of samplePoints) {
-            console.log('points0', points);
-            let pointsarr = points2vector([],points);
-            console.log('pointsarr',pointsarr);
-
-            let pointsgeometry = new THREE.BufferGeometry().setFromPoints(pointsarr);
+            let pointsgeometry = points2vector(points);        
             let lineMaterial = new THREE.LineBasicMaterial({ color: Math.random() * 0xffffff });
             let sampleline = new THREE.Line(pointsgeometry, lineMaterial);
             scene.add(sampleline);
         };
 
-        /*
-                const samplepoints = [];
-                samplepoints.push( new THREE.Vector3( - 10, 0, 0 ) );
-                samplepoints.push( new THREE.Vector3( 0, 10, 0 ) );
-                samplepoints.push( new THREE.Vector3( 10, 0, 0 ) );
-                samplepoints.push( new THREE.Vector3( 20, 0, 0 ) );
-                samplepoints.push( new THREE.Vector3( 15, 15, 0 ) );
-        
-        
-                const samplegeometry = new THREE.BufferGeometry().setFromPoints( samplepoints );
-                
-                const sampleline = new THREE.Line( samplegeometry,lineMaterial );
-                scene.add( sampleline );
-        */
 
         renderer.render(scene, camera);
 
