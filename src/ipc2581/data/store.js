@@ -1,4 +1,3 @@
-//import textcase3 from './testcase3';
 import ParseDic from './dictionary.js';
 
 

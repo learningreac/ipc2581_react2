@@ -4,7 +4,8 @@ import './index.css';
 //import App from './App';
 //import App from './delauntor/App';
 //import App from './drawpad/padapp';
-import App from './ipc2581/App';
+//import App from './ipc2581/App';
+import App from './ipc2581_three_js/App'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
