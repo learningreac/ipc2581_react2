@@ -80,3 +80,8 @@ function transformStoreToPoints (transedSuperStore, curlayer) {
 };
 
 export default transformStoreToPoints;
+
+
+/*
+SM_TOP: {layerName: 'SM_TOP', polylines: Array(45), contours: Array(0)}
+*/

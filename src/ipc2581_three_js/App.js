@@ -10,6 +10,7 @@ import LayerBtns from './components/LayerBtns';
 import ParseStore from './dataParser/parseStore';
 import transformStoreToPoints from './dataParser/tansformStoreToPoints';
 
+let transedSuperStore= {};
 
 const App = () => {
     const [xmlDoc, setxmlDoc] = useState(null);
@@ -21,8 +22,8 @@ const App = () => {
     {layerName: 'fab', polylines: Array(1120), contours: Array(7), pads: Array(0), bbox: undefined, …}
     */
 
-    let superstore, layersKey;
-    let transedSuperStore= {};
+    let superstore, layersKey, curDraw;
+    
     if (xmlDoc) {
       superstore = ParseStore(xmlDoc);
       layersKey = Object.keys(superstore);
@@ -33,14 +34,18 @@ const App = () => {
       };
     window.superstore = superstore;
 
-    transformStoreToPoints(transedSuperStore,layer);
-    console.log('trastore', transedSuperStore)
+
+    if(layer) {
+      curDraw = transformStoreToPoints(transedSuperStore,layer);
+      console.log('trastore', transedSuperStore);
+    }
+  
 
     return (
         <div className='threejsapp'>
             <FileDropZone setxmlDoc={setxmlDoc} />
             <LayerBtns layerList = {layersKey}  handlerClick = {layerBtnHandler}/>
-            <ThreeJsCanvas />
+            {curDraw && <ThreeJsCanvas layer = {curDraw}/> }
         </div>
 
     )
