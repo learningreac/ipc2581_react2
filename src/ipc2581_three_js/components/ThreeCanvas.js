@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from "three";
+import { OrbitControls } from '../js/OrbitControls.js'
 
 function points2vector(points) {
     let pointsgeometry;
     let arr = [];
     const scaleratio = 10;
     for (const point of points) {
-        arr.push(new THREE.Vector3(point[0]*scaleratio, point[1]*scaleratio, 0));
+        arr.push(new THREE.Vector3(point[0] * scaleratio, point[1] * scaleratio, 0));
     };
     pointsgeometry = new THREE.BufferGeometry().setFromPoints(arr);
     return pointsgeometry;
@@ -46,15 +47,40 @@ const ThreeJsCanvas = ({ layer }) => {
         document.body.appendChild(renderer.domElement);
         // const lineMaterial = new THREE.LineBasicMaterial({ color: Math.random() * 0xffffff });
 
-       
-        if(layer.polylines){
+
+        if (layer.polylines) {
             drawEntitys(scene, layer.polylines);
         };
-        if(layer.contours) {
-            drawEntitys(scene,layer.contours);
+        if (layer.contours) {
+            drawEntitys(scene, layer.contours);
         };
 
-        renderer.render(scene, camera);
+        //
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 25, 0);
+        controls.update();
+        //
+
+        window.addEventListener('resize', onWindowResize);
+        onWindowResize();
+
+        animate();
+
+
+        function onWindowResize() {
+            console.log('window resize')
+
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+
+        function animate() {
+
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
 
     }, [layer.polylines, layer.contours]);
 
