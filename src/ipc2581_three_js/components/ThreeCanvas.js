@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from "three";
-import { OrbitControls } from '../js/OrbitControls.js'
+import { OrbitControls } from '../../js/OrbitControls';
 
 function points2vector(points) {
     let pointsgeometry;
@@ -80,7 +80,9 @@ const ThreeJsCanvas = ({ layer }) => {
 
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
-        }
+        };
+
+       // return scene.clear();
 
     }, [layer.polylines, layer.contours]);
 
