@@ -21,24 +21,24 @@ const Placeholder = () => {
     )
 }
 
-const SPDropzone = () => {
+const SPDropzone = ({ setFile }) => {
     const DropzoneRef = useRef(null);
     // const FileInputRef = useRef(null);
     const FileInputRef = React.createRef();
     let dropEl, inputEl;
-
-
-
-
-
 
     useEffect(() => {
         dropEl = DropzoneRef.current;
         inputEl = FileInputRef.current;
         console.log(dropEl, inputEl);
 
-        // const dropCtrl = new SimpleDropzone(dropEl, inputEl);
-        // dropCtrl.on('drop', ({files}) => console.log('files',files));
+        const dropCtrl = new SimpleDropzone(dropEl, inputEl);
+        dropCtrl.on('drop', ({ files }) => {
+                            console.log('files', files);
+                            //Map(1) {'model_bloom3d (1).glb' => File}
+                            setFile(files)
+                    });
+        
 
     }, [])
 
